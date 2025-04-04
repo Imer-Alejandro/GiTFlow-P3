@@ -18,12 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     
-  function deleteNote(index) {
-    const notes = getNotes();
-    notes.splice(index, 1);
-    saveNotes(notes);
-    renderNotes();
-  }
   
     function renderNotes() {
       notesList.innerHTML = "";
