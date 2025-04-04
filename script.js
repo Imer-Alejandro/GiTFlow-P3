@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const contentInput = document.getElementById("content");
     const editIndexInput = document.getElementById("editIndex");
     const notesList = document.getElementById("notesList");
-  
 
     // Mostrar las notas al cargar
     renderNotes(); 
@@ -48,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
       saveNotes(notes);
       renderNotes();
     }
+
   
     function editNote(index) {
       const notes = getNotes();
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
       contentInput.value = note.content;
       editIndexInput.value = index;
     }
+
   
     function renderNotes() {
       notesList.innerHTML = "";
