@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const editIndexInput = document.getElementById("editIndex");
     const notesList = document.getElementById("notesList");
   
+
     // Mostrar las notas al cargar
-    renderNotes();
+    renderNotes(); 
   
     // Evento del formulario
     noteForm.addEventListener("submit", function (e) {
@@ -76,7 +77,5 @@ document.addEventListener("DOMContentLoaded", function () {
         notesList.appendChild(col);
       });
     }
-  
-   
   });
   
