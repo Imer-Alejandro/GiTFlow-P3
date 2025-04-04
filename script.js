@@ -4,10 +4,50 @@ document.addEventListener("DOMContentLoaded", function () {
     const contentInput = document.getElementById("content");
     const editIndexInput = document.getElementById("editIndex");
     const notesList = document.getElementById("notesList");
-  
+
     // Mostrar las notas al cargar
-    renderNotes();
- 
+    renderNotes(); 
+  
+    // Evento del formulario
+    noteForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = titleInput.value;
+      const content = contentInput.value;
+      const editIndex = editIndexInput.value;
+  
+      if (editIndex === "") {
+        // Crear nueva nota
+        const newNote = { title, content };
+        const notes = getNotes();
+        notes.push(newNote);
+        saveNotes(notes);
+      } else {
+        // Editar nota existente
+        const notes = getNotes();
+        notes[editIndex] = { title, content };
+        saveNotes(notes);
+        editIndexInput.value = "";
+      }
+  
+      noteForm.reset();
+      renderNotes();
+    });
+  
+    function getNotes() {
+      return JSON.parse(localStorage.getItem("notes")) || [];
+    }
+  
+    function saveNotes(notes) {
+      localStorage.setItem("notes", JSON.stringify(notes));
+    }
+  
+    function deleteNote(index) {
+      const notes = getNotes();
+      notes.splice(index, 1);
+      saveNotes(notes);
+      renderNotes();
+    }
+
   
     function editNote(index) {
       const notes = getNotes();
@@ -17,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
       editIndexInput.value = index;
     }
 
-    
   
     function renderNotes() {
       notesList.innerHTML = "";
@@ -39,6 +78,5 @@ document.addEventListener("DOMContentLoaded", function () {
         notesList.appendChild(col);
       });
     }
-  
   });
   
